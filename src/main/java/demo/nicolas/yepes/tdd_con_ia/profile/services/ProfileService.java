@@ -4,8 +4,11 @@ import demo.nicolas.yepes.tdd_con_ia.profile.dtos.ProfileRequestDTO;
 import demo.nicolas.yepes.tdd_con_ia.profile.dtos.ProfileResponseDTO;
 import demo.nicolas.yepes.tdd_con_ia.profile.entities.ProfileEntity;
 import demo.nicolas.yepes.tdd_con_ia.profile.repositories.ProfileRepository;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class ProfileService {
@@ -30,6 +33,14 @@ public class ProfileService {
         return mapToResponseDTO(profile);
     }
     
+        @Transactional(readOnly = true)
+        public List<ProfileResponseDTO> getAll() {
+            List<ProfileEntity> profiles = profileRepository.findAll();
+            return profiles.stream()
+                    .map(this::mapToResponseDTO)
+                    .toList();
+        }
+
     private ProfileResponseDTO mapToResponseDTO(ProfileEntity profile) {
         return new ProfileResponseDTO(
                 profile.getId(),
