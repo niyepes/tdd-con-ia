@@ -77,5 +77,7 @@ public class ProfileControllerTest {
                 .andExpect(jsonPath("$.email", is("nicolasyepes2004@gmail.com")))
                 .andExpect(jsonPath("$.id", notNullValue()));
     }
+    
+    
 }
 
