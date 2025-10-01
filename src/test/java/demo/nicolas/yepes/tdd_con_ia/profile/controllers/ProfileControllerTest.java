@@ -1,5 +1,7 @@
 package demo.nicolas.yepes.tdd_con_ia.profile.controllers;
 
+import demo.nicolas.yepes.tdd_con_ia.profile.entities.ProfileEntity;
+import demo.nicolas.yepes.tdd_con_ia.profile.repositories.ProfileRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,9 @@ public class ProfileControllerTest {
     @Autowired
     private WebApplicationContext webApplicationContext;
 
+    @Autowired
+    private ProfileRepository profileRepository;
+
     private MockMvc mockMvc;
 
     @DynamicPropertySource
@@ -47,6 +52,7 @@ public class ProfileControllerTest {
     @BeforeEach
     void setup() {
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+        profileRepository.deleteAll();
     }
 
     @Test
@@ -70,11 +76,15 @@ public class ProfileControllerTest {
 
     @Test
     void shouldGetProfile() throws Exception {
+        // Crear perfil de prueba para el test shouldGetProfile
+        ProfileEntity testProfile = new ProfileEntity("Sebastián Romero", "sebastianromero@gmail.com");
+        profileRepository.save(testProfile);
+
         mockMvc.perform(get("/api/profiles/{id}",1L)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name", is("Nicolás Yepes")))
-                .andExpect(jsonPath("$.email", is("nicolasyepes2004@gmail.com")))
+                .andExpect(jsonPath("$.name", is("Sebastián Romero")))
+                .andExpect(jsonPath("$.email", is("sebastianromero@gmail.com")))
                 .andExpect(jsonPath("$.id", notNullValue()));
     }
     
