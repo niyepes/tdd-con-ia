@@ -42,3 +42,9 @@ Después de montar la clase de test *ProfileControllerTest*, dejamos que la IA c
 ```
 Dado este test, genera cada una de las clases que necesites para pasarlo. Recuerda que la implementación debe estar separada por capas, de controller a repository, además utiliza DTO's para abstraer cada capa
 ```
+
+## Segundo Prompt
+Después de crear el método de prueba *shouldGetProfile()*, le pedimos a la IA que acomode el código del proyecto para él
+```
+He creado un nuevo test, crea para este, la implementación faltante
+```
