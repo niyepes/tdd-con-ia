@@ -17,7 +17,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -62,6 +62,16 @@ public class ProfileControllerTest {
         mockMvc.perform(post("/api/profiles")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(profileJson))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", is("Nicolás Yepes")))
+                .andExpect(jsonPath("$.email", is("nicolasyepes2004@gmail.com")))
+                .andExpect(jsonPath("$.id", notNullValue()));
+    }
+
+    @Test
+    void shouldGetProfile() throws Exception {
+        mockMvc.perform(get("/api/profiles/{id}",1L)
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name", is("Nicolás Yepes")))
                 .andExpect(jsonPath("$.email", is("nicolasyepes2004@gmail.com")))

@@ -46,5 +46,10 @@ Dado este test, genera cada una de las clases que necesites para pasarlo. Recuer
 ## Segundo Prompt
 Después de crear el método de prueba *shouldGetProfile()*, le pedimos a la IA que acomode el código del proyecto para él
 ```
-He creado un nuevo test, crea para este, la implementación faltante
+He creado un nuevo test, crea para este, la implementación faltante para pasarlo
+```
+## Tercer Prompt
+Después de crear el método de prueba *findAllProfiles()*, le pedimos a la IA que acomode el código del proyecto a este
+```
+He creado el test, crea para este, la implementación faltante para pasarlo
 ```
