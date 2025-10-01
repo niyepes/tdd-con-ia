@@ -36,3 +36,9 @@
 			<scope>test</scope>
 </dependency>
 ```
+
+## Primer Prompt
+Después de montar la clase de test *ProfileControllerTest*, dejamos que la IA cree las clases para pasar el test, con el siguiente prompt:
+```
+Dado este test, genera cada una de las clases que necesites para pasarlo. Recuerda que la implementación debe estar separada por capas, de controller a repository, además utiliza DTO's para abstraer cada capa
+```
